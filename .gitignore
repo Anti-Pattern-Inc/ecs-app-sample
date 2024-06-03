@@ -1,2 +1,3 @@
 !/lambda/canary-app/nodejs/node_modules
 !/lambda/canary-app/nodejs/node_modules/*.js
+node_modules

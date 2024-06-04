@@ -130,46 +130,5 @@ export class Networking extends Construct {
       traffic: ec2.AclTraffic.allTraffic(),
       ruleAction: ec2.Action.ALLOW,
     })
-
-    // VPC Endpoint for S3
-    vpc.addGatewayEndpoint('S3GWEndpoint', {
-      service: ec2.GatewayVpcEndpointAwsService.S3,
-      subnets: [
-        { subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS },
-        { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
-      ],
-    })
-
-    // VPC Endpoint for SSM
-    vpc.addInterfaceEndpoint('SsmEndpoint', {
-      service: ec2.InterfaceVpcEndpointAwsService.SSM,
-      subnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
-    })
-    vpc.addInterfaceEndpoint('SsmMessagesEndpoint', {
-      service: ec2.InterfaceVpcEndpointAwsService.SSM_MESSAGES,
-      subnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
-    })
-    vpc.addInterfaceEndpoint('Ec2Endpoint', {
-      service: ec2.InterfaceVpcEndpointAwsService.EC2,
-      subnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
-    })
-    vpc.addInterfaceEndpoint('Ec2MessagesEndpoint', {
-      service: ec2.InterfaceVpcEndpointAwsService.EC2_MESSAGES,
-      subnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
-    })
-
-    // VPC Endpoint for Fargate
-    vpc.addInterfaceEndpoint('EcrDkrEndpoint', {
-      service: ec2.InterfaceVpcEndpointAwsService.ECR_DOCKER,
-      subnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
-    })
-    vpc.addInterfaceEndpoint('EcrEndpoint', {
-      service: ec2.InterfaceVpcEndpointAwsService.ECR,
-      subnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
-    })
-    vpc.addInterfaceEndpoint('LogsEndpoint', {
-      service: ec2.InterfaceVpcEndpointAwsService.CLOUDWATCH_LOGS,
-      subnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
-    })
   }
 }
